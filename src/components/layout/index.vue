@@ -1,7 +1,7 @@
 <template>
   <div class="layout-container">
     <div class="header">
-      <img class="avatar" src="src/assets/avatar.jpg" />
+      <img class="avatar" src="@/assets/avatar.jpg" />
       <div class="nav">
         <div @click="handleNavChange(item)" class="nav-item" v-for="item in navList" key="item.path">{{item.name}}</div>
       </div>
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
   import { ref } from 'vue';
-import router from '../../router';
+import router from '@/router';
   const navList = ref([
     {
       name: '首页',
