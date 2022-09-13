@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-container">
+  <div ref="container" class="layout-container">
     <div class="header">
       <img class="avatar" src="@/assets/avatar.jpg" />
       <div class="nav">
@@ -16,8 +16,9 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
-import router from '@/router';
+  import { ref, provide } from 'vue';
+  import router from '@/router';
+  
   const navList = ref([
     {
       name: '首页',
@@ -32,7 +33,9 @@ import router from '@/router';
       path: '/message'
     }
   ])
+  const container = ref()
 
+  provide('rootComponent', container)
   const handleNavChange = (item) => router.push(item.path)
 </script>
 

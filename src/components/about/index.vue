@@ -1,6 +1,6 @@
 <template>
  <div :style="containerStyle" class="about-me">
-    <div :style="layer" class="card" ref="card">
+    <div :style="layer" class="card">
       <div>Welcome!</div>
       <div>I'm Luckept</div>
       <div>页面随缘完善中...</div>
@@ -9,12 +9,12 @@
 </template>
 
 <script setup lang="ts">
-import { useParallax } from '@vueuse/core'
-import type { CSSProperties } from 'vue'
+import { MaybeElementRef, useParallax } from '@vueuse/core'
+import { CSSProperties, inject } from 'vue'
 import { computed, reactive, ref } from 'vue'
 
-const card = ref()
-const parallax = reactive(useParallax(card))
+const rootComponent = ref(inject('rootComponent'))
+const parallax = reactive(useParallax(rootComponent as MaybeElementRef))
 
 const layerBase: CSSProperties = {
   position: 'absolute',
@@ -40,6 +40,7 @@ const layer = computed(() => ({
   display: flex;
   justify-content: center;
   padding-top: 100px;
+  box-sizing: border-box;
   .card {
     width: 400px;
     height: 400px;
