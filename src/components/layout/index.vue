@@ -3,7 +3,7 @@
     <div class="header">
       <img class="avatar" src="@/assets/avatar.jpg" />
       <div class="nav">
-        <div @click="handleNavChange(item)" class="nav-item" v-for="item in navList" key="item.path">{{item.name}}</div>
+        <div @click="handleNavChange(item, index)" :class="['nav-item', currentIndex === index ? 'actived': '']" v-for="item, index in navList" key="item.path">{{item.name}}</div>
       </div>
     </div>
     <div class="content">
@@ -34,9 +34,10 @@
     }
   ])
   const container = ref()
+  const currentIndex = ref(0)
 
   provide('rootComponent', container)
-  const handleNavChange = (item) => router.push(item.path)
+  const handleNavChange = (item, index) => (router.push(item.path), currentIndex.value = index)
 </script>
 
 <style lang="scss" scoped>
@@ -74,6 +75,11 @@
           color: #fff;
           font-size: 16px;
           cursor: pointer;
+
+          &.actived {
+            color: rgb(232, 177, 186);
+            font-weight: 900;
+          }
         }
       }
     }
