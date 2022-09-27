@@ -1,7 +1,7 @@
 <template>
   <div ref="container" class="layout-container">
     <div class="header">
-      <img class="avatar" src="@/assets/avatar.jpg" />
+      <img class="avatar" :src="base64Avatar" />
       <div class="nav">
         <div @click="handleNavChange(item, index)" :class="['nav-item', currentIndex === index ? 'actived': '']" v-for="item, index in navList" key="item.path">{{item.name}}</div>
       </div>
@@ -18,6 +18,7 @@
 <script setup lang="ts">
   import { ref, provide } from 'vue';
   import router from '@/router';
+  import { base64Avatar } from '@/assets/avatar.js';
   
   const navList = ref([
     {
